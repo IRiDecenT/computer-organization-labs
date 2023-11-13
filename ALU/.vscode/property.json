@@ -1,0 +1,14 @@
+{
+	"toolChain": "xilinx",
+	"prjName": {
+		"PL": "template"
+	},
+	"library": {
+		"state": "local"
+	},
+	"soc": {
+		"core": "none"
+	},
+	"enableShowLog": false,
+	"device": "none"
+}
