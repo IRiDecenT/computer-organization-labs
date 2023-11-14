@@ -3,9 +3,6 @@
 	"prjName": {
 		"PL": "template"
 	},
-	"library": {
-		"state": "local"
-	},
 	"soc": {
 		"core": "none"
 	},
