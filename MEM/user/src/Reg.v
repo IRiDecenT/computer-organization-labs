@@ -1,11 +1,11 @@
 // 定义一个名为Reg的模块，该模块模拟了一个寄存器组
-module Reg(Ra, Rb, Rv, RegWr, busV, Clock, busA, busB);
+module Reg(Ra, Rb, Rw, RegWr, busV, Clock, busA, busB);
 
 // 定义一个参数n，表示数据总线的宽度
 parameter n = 32;
 
 // 定义三个5位宽的输入线，分别是两个寄存器地址和一个寄存器值
-input wire[4:0] Ra, Rb, Rv;
+input wire[4:0] Ra, Rb, Rw;
 
 // 定义两个输入线，分别是写入使能信号和时钟信号
 input wire RegWr, Clock;
@@ -28,11 +28,11 @@ initial
         mem[4] <= 44;
     end
 
-// 在时钟信号的下降沿，如果Rv为1，则将输入数据总线的值写入到寄存器数组的Rv位置
+// 在时钟信号的下降沿，如果Rw为1，则将输入数据总线的值写入到寄存器数组的Rw位置
 always @ (negedge Clock)
     begin
-        if (Rv == 1)
-            mem[Rv] <= busV;
+        if (Rw == 1)
+            mem[Rw] <= busV;
     end
 
 // 当Ra或Rb的值发生变化时，将对应的寄存器值输出到数据总线
