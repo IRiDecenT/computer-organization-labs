@@ -17,7 +17,7 @@ output reg[n-1:0] dataout;
 // 定义一个256个元素的内存数组，每个元素是一个8位宽的寄存器
 (* ram_style = "distributed" *) reg [7:0] mem [255:0];
 
-// 在时钟信号的下降沿，如果VE为1，则将输入数据写入到内存数组的指定地址
+// 在时钟信号的下降沿，如果WE为1，则将输入数据写入到内存数组的指定地址
 always @ (negedge clk)
     begin
         if(WE ==1)

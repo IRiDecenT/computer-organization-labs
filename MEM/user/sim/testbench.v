@@ -1,4 +1,3 @@
-
 module testbench();
 
 parameter DATA_WIDTH = 32;
