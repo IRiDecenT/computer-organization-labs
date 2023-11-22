@@ -1,10 +1,12 @@
 `timescale 1ns/1ps
-module testbench();
+`include "/Users/yr/code/computer-organization/computer-organization-labs/ALU/user/src/ALU.v"
+
+module testbench;
 parameter n = 32;
 reg [n-1:0] A;
 reg [n-1:0] B;
 reg [2:0] ALUctr;
-//Instance 
+//Instance
 // outports wire
 
 wire [n-1:0] 	Result;
@@ -19,9 +21,9 @@ ALU u_ALU(
 	.Overflow 	( Overflow  )
 );
 
-initial begin            
-    $dumpfile("wave.vcd");        
-    $dumpvars(0, testbench);  
+initial begin
+    $dumpfile("wave.vcd");
+    $dumpvars(0, testbench);
 
     // 无符号加法，不判溢出
     ALUctr = 3'b000;
@@ -40,13 +42,13 @@ initial begin
     B = 32'd5;
     #10000
     B = 32'hf; // 上溢
-    #10000 
+    #10000
     A = -32'd16;
     B = -32'd8;
     #10000
     // 下溢
     A = 32'h80000001;
-    B = 32'h80000001; 
+    B = 32'h80000001;
     #10000
 
     // 或运算

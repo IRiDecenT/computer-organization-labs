@@ -1,3 +1,12 @@
+`include "/Users/yr/code/computer-organization/computer-organization-labs/ALU/user/src/crtgenerator.v"
+`include "/Users/yr/code/computer-organization/computer-organization-labs/ALU/user/src/adder32.v"
+`include "/Users/yr/code/computer-organization/computer-organization-labs/ALU/user/src/extend32.v"
+`include "/Users/yr/code/computer-organization/computer-organization-labs/ALU/user/src/mux2to1_1bit.v"
+`include "/Users/yr/code/computer-organization/computer-organization-labs/ALU/user/src/mux2to1_32bit_01mux.v"
+`include "/Users/yr/code/computer-organization/computer-organization-labs/ALU/user/src/mux3to1_32bit.v"
+`include "/Users/yr/code/computer-organization/computer-organization-labs/ALU/user/src/or32.v"
+`include "/Users/yr/code/computer-organization/computer-organization-labs/ALU/user/src/xor32.v"
+
 module ALU(A, B, ALUctr, Zero, Overflow, Result);
 	parameter n = 32;
 	input [n-1:0] A;

@@ -10,7 +10,7 @@ module adder32(A, B, Cin, Add_Carry, Add_Overflow, Add_Sign, Add_Result, Zero);
 
 	assign {cout, Add_Result} = A + B + Cin;
 	assign Add_Carry = ~(cout ^ Cin);
-	assign Add_Overflow = cout ^ Add_Result[n-1] ^ A[n-1] ^ B[n-1]; // maybe wrong for sub
+	assign Add_Overflow = cout ^ Add_Result[n-1] ^ A[n-1] ^ B[n-1];
 	assign Add_Sign = Add_Result[n-1];
 	/*
 	if(Add_Result == 32'b0)
