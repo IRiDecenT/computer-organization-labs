@@ -1,3 +1,4 @@
+`include "/Users/yr/code/computer-organization/computer-organization-labs/MEM/user/src/MEM.v"
 module testbench();
 
 parameter DATA_WIDTH = 32;
@@ -52,6 +53,15 @@ initial begin
     #20
     WE = 0;
     addr = 0;
+    #21
+    WE = 1;
+    addr = 30; // 往30地址及以后写入数据
+
+    #20
+    // 读取刚刚写的数据
+    WE = 0;
+    addr = 30;
+
 
     #5000 $finish;
 end

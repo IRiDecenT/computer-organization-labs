@@ -1,4 +1,6 @@
 `include "/Users/yr/code/computer-organization/computer-organization-labs/REGS/user/src/Reg.v"
+`timescale 1us/1ns
+
 module testbench;
 parameter DATA_WIDTH = 32;
 parameter ADDR_WIDTH = 32;
@@ -8,6 +10,8 @@ reg                   sys_rst = 1;
 reg [DATA_WIDTH-1:0]  data = 0;
 reg [ADDR_WIDTH-1:0]  addr = 0;
 
+
+// 10us一个周期
 always begin
     #(500/MAIN_FRE) sys_clk = ~sys_clk;
 end
@@ -47,38 +51,80 @@ Reg u_Reg(
 	.Rb    	( Rb     ),
 	.Rw    	( Rw     ),
 	.RegWr 	( RegWr  ),
-	.Clock 	( Clock  ),
+	.Clock 	( sys_clk),
 	.busW  	( busW   ),
 	.busA  	( busA   ),
 	.busB  	( busB   )
 );
 
-always begin
-    #500 Clock = ~Clock;
-end
 
-
+integer i;
+integer x = 0;
 initial begin
     $dumpfile("wave.vcd");
     $dumpvars(0, testbench);
-    #1000
-    Ra = 1;
-    Rb = 2;
-    #1000
-    Ra = 3;
-    Rb = 4;
-    #1000
-    Ra = 5;
-    Rb = 6;
-    #1000
-    Rw = 1;
+    // 局部测试
+    #5             // 休眠半个周期
+    RegWr = 0;
+    Ra = 0;
+    Rb = 1;
+    #10
+    Ra = 2;
+    Rb = 3;
+    #10
+    Ra = 4;
+    Rb = 5;
+    #10
+    Rw = 0;
     RegWr = 1;
-    busW = 32'd20;
+    busW = 32'h1;
+    #10
+    Rw = 1;
+    busW = 32'h2;
+    #10
+    Rw = 2;
+    busW = 32'h3;
+    #10
+    Rw = 3;
+    busW = 32'h4;
+    #10
+    Rw = 4;
+    busW = 32'h5;
+    #10
+    Rw = 5;
+    busW = 32'h6;
+    #10
+    RegWr = 0;
+    Ra = 0;
+    Rb = 1;
+    #10
+    Ra = 2;
+    Rb = 3;
+    #10
+    Ra = 4;
+    Rb = 5;
 
+    Rw = 0;
+    #10
 
+    // 0-31号寄存器全部测试
+    // 向0-31号寄存器写入0-31
+    RegWr = 1;
+    for (i=0; i < 32; i=i+1) begin
+        Rw = i;
+        busW = x;
+        x = x + 1;
+        #10;
+    end
+    // 将我们向0-32号寄存器写入的数据读出来
+    RegWr = 0;
+    for(i = 0; i < 32; i = i + 2)begin
+        Ra = i;
+        Rb = i+1;
+        #10;
+    end
 
-
-    #50000 $finish;
+    #500 $finish;
 end
 
 endmodule  //TOP
