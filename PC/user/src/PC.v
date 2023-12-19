@@ -3,11 +3,11 @@ module PC(
     input[29:0] nextAddr,
     output reg[29:0] curAddr
 );
-    initial begin
-        curAddr <= 0;
-    end
+    // initial begin
+    //     curAddr <= 0;
+    // end
     always @(posedge clk) begin
-        curAddr = nextAddr;
+        curAddr <= nextAddr;
     end
 endmodule
 

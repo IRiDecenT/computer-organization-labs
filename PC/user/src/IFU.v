@@ -12,6 +12,10 @@ module IFU(
     wire[31:2] curAddr;
     wire[31:2] extend_imme;
 
+    initial begin
+        nextAddr <= 0;
+    end
+
     PC pc(
         .clk(clk),
         .nextAddr(nextAddr),
@@ -28,7 +32,7 @@ module IFU(
         .out(extend_imme)
     );
 
-    always @(posedge clk) begin
+    always @(curAddr) begin
         if(jump)begin
             nextAddr <= {curAddr[31:28] + instruction[25:0]};
         end

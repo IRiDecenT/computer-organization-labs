@@ -11,7 +11,7 @@ reg [DATA_WIDTH-1:0]  data = 0;
 reg [ADDR_WIDTH-1:0]  addr = 0;
 
 always begin
-    #(500/MAIN_FRE) sys_clk = ~sys_clk;
+    #1000 sys_clk = ~sys_clk;
 end
 
 always begin

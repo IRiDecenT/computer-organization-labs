@@ -16,27 +16,28 @@ input wire[n-1:0] busW;
 // 定义两个32位宽的输出数据总线
 output reg[n-1:0] busA, busB;
 
-// 定义一个32个元素的寄存器数组，每个元素是一个5位宽的寄存器
-reg [4:0] mem [0:31];
+// 定义一个32个元素的寄存器数组，每个元素是一个32位宽的寄存器
+reg [31:0] mem [0:31];
 
-// 在仿真开始时，将寄存器数组的前四个元素初始化为11
+// 初始化时将前四个寄存器的值设置为32'h0，
 initial
     begin
-        mem[0] <= 32'ha;
-        mem[1] <= 32'hb;
-        mem[2] <= 32'hc;
-        mem[3] <= 32'hd;
+        mem[0] <= 32'h0;
+        mem[1] <= 32'h0;
+        mem[2] <= 32'h0;
+        mem[3] <= 32'h0;
     end
 
 // 在时钟信号的下降沿，如果Rw为1，则将输入数据总线的值写入到寄存器数组的Rw位置
 always @ (negedge Clock)
     begin
-        if (RegWr == 1)
+        if (RegWr == 1)begin
             mem[Rw] <= busW;
+            $display("[DEBUG] write %h to reg%h", busW, Rw);
+        end
     end
 
-// 当Ra或Rb的值发生变化时，将对应的寄存器值输出到数据总线
-always @ (Ra or Rb)
+always @ (*)
     begin
         busA <= mem[Ra];
         busB <= mem[Rb];

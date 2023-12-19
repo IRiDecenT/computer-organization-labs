@@ -3,7 +3,7 @@ module InsMEM(
     output reg [31:0] InsData
     );
 
-    reg [7:0] rom[127:0];
+    reg [7:0] rom[511:0];
 
     initial begin
         $readmemh("/Users/yr/code/computer-organization/computer-organization-labs/InsMEM/user/data/Instruction.txt", rom);

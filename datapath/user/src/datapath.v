@@ -81,7 +81,7 @@ module datapath(
 
     MEM mem(.Address(result),
             .WE(MemWr),
-            .data(busW),
+            .data(busB),
             .dataout(memdata),
             .clk(clk));
 

@@ -1,5 +1,5 @@
-`include "/Users/yr/code/computer-organization/computer-organization-labs/PC/user/src/IFU.v"
-`timescale 1ns/1ps;
+`include "/Users/yr/code/computer-organization/computer-organization-labs/singleCycleCpu/user/src/singleCycleCpu.v"
+`timescale 1ns/1ps
 module testbench();
 
 parameter DATA_WIDTH = 32;
@@ -32,18 +32,8 @@ always @(posedge sys_clk) begin
 end
 
 //Instance
-// outports wire
-wire [31:0] 	instruction;
-reg jump = 0;
-reg branch = 0;
-reg zero = 0;
-
-IFU u_IFU(
-	.clk         	( sys_clk          ),
-	.jump        	( jump         ),
-	.branch      	( branch       ),
-	.zero        	( zero         ),
-	.instruction 	( instruction  )
+singleCycleCpu u_singleCycleCpu(
+	.clk 	( sys_clk  )
 );
 
 
