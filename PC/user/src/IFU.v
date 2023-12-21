@@ -37,7 +37,7 @@ module IFU(
         #10
         if(jump)begin
             nextAddr = {curAddr[31:28], instruction[25:0]};
-            $display("[DEBUG] jump curAddr: %h, nextAddr: %d", curAddr, nextAddr);
+            $display("[DEBUG] jump curAddr: %d, nextAddr: %d", curAddr, nextAddr);
         end
         else if(branch && zero)begin
             nextAddr = curAddr + 1 + extend_imme;

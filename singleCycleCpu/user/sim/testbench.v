@@ -41,7 +41,7 @@ singleCycleCpu u_singleCycleCpu(
 initial begin
     $dumpfile("wave.vcd");
     $dumpvars(0, testbench);
-    #50000 $finish;
+    #500000 $finish;
 end
 
 endmodule  //TOP
