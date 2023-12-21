@@ -7,7 +7,7 @@ module PC(
     //     curAddr <= 0;
     // end
     always @(posedge clk) begin
-        curAddr <= nextAddr;
+        curAddr = nextAddr;
     end
 endmodule
 

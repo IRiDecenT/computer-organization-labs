@@ -51,6 +51,8 @@ IFU u_IFU(
 initial begin
     $dumpfile("wave.vcd");
     $dumpvars(0, testbench);
+    #3300 branch = 1; zero = 1;
+    #200 branch = 0; zero = 0;
     #50000 $finish;
 end
 

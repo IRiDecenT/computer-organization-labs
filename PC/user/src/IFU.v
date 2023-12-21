@@ -1,6 +1,7 @@
 `include "/Users/yr/code/computer-organization/computer-organization-labs/PC/user/src/PC.v"
 `include "/Users/yr/code/computer-organization/computer-organization-labs/InsMEM/user/src/InsMEM.v"
 `include "/Users/yr/code/computer-organization/computer-organization-labs/PC/user/src/Extend16to30.v"
+`timescale 1ns/1ps;
 module IFU(
     input clk,
     input jump,
@@ -13,7 +14,7 @@ module IFU(
     wire[31:2] extend_imme;
 
     initial begin
-        nextAddr <= 0;
+        nextAddr = 0;
     end
 
     PC pc(
@@ -33,14 +34,18 @@ module IFU(
     );
 
     always @(curAddr) begin
+        #10
         if(jump)begin
-            nextAddr <= {curAddr[31:28] + instruction[25:0]};
+            nextAddr = {curAddr[31:28], instruction[25:0]};
+            $display("[DEBUG] jump curAddr: %h, nextAddr: %d", curAddr, nextAddr);
         end
         else if(branch && zero)begin
-            nextAddr <= curAddr + 1 + extend_imme;
+            nextAddr = curAddr + 1 + extend_imme;
+            $display("[DEBUG] branch curAddr: %d, nextAddr: %d branch=%d zero=%d", curAddr, nextAddr, branch, zero);
+            $display("[DEBUG] extend_imme: %d", extend_imme);
         end
         else begin
-            nextAddr <= curAddr + 1;
+            nextAddr = curAddr + 1;
         end
     end
 endmodule
