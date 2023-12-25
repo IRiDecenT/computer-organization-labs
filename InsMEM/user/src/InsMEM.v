@@ -6,8 +6,8 @@ module InsMEM(
     reg [7:0] rom[511:0];
 
     initial begin
-        // $readmemh("/Users/yr/code/computer-organization/computer-organization-labs/InsMEM/user/data/Instruction.txt", rom);
-        $readmemh("/Users/yr/code/computer-organization/computer-organization-labs/InsMEM/user/data/fibInstruction.txt", rom);
+        $readmemh("/Users/yr/code/computer-organization/computer-organization-labs/InsMEM/user/data/Instruction.txt", rom);
+        // $readmemh("/Users/yr/code/computer-organization/computer-organization-labs/InsMEM/user/data/fibInstruction.txt", rom);
     end
     // 大端方式
     always @(InsAddr) begin

@@ -19,8 +19,8 @@ output reg[n-1:0] dataout;
 
 initial
     begin
-        // $readmemh("/Users/yr/code/computer-organization/computer-organization-labs/MEM/user/data/data.txt", mem);
-        $readmemh("/Users/yr/code/computer-organization/computer-organization-labs/MEM/user/data/fibData.txt", mem);
+        $readmemh("/Users/yr/code/computer-organization/computer-organization-labs/MEM/user/data/data.txt", mem);
+        // $readmemh("/Users/yr/code/computer-organization/computer-organization-labs/MEM/user/data/fibData.txt", mem);
     end
 
 // 在时钟信号的下降沿，如果WE为1，则将输入数据写入到内存数组的指定地址
